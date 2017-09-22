@@ -76,16 +76,16 @@ class KeyPoller():
 
 
 with KeyPoller() as keyPoller:
+    repo = Repo('.')
+    origin = repo.remotes.origin
+    
     while True:
         q = keyPoller.poll()
         if not q is None:
 
             if q == "q":
                 break
-
-            repo = Repo('.')
-            origin = repo.remotes.origin
-            print(repo.is_dirty())
-            if repo.is_dirty():
-                origin.pull()
-                subprocess.call("python pullme.py", shell=True)
+        print(repo.is_dirty())
+        if repo.is_dirty():
+            origin.pull()
+            subprocess.call("python pullme.py", shell=True)
