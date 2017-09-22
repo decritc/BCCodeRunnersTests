@@ -1,7 +1,8 @@
 import subprocess
 import time
 from git import Repo
-
+import logging
+logging.basicConfig(level=logging.INFO)
 
 
 global isWindows
