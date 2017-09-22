@@ -95,4 +95,3 @@ with KeyPoller() as keyPoller:
                 subprocess.call("git add .", shell=True)
                 subprocess.call("git commit -am'Automated Changes'", shell=True)
                 origin.push()
-                print("pushed to master")
