@@ -1,5 +1,8 @@
 import subprocess
+import time
 from git import Repo
+import logging
+logging.basicConfig(level=logging.INFO)
 
 
 global isWindows
@@ -74,25 +77,36 @@ class KeyPoller():
                 return sys.stdin.read(1)
             return None
 
+def check_for_updates(repo, origin):
+    if repo.is_dirty(True, False):
+        origin.pull()
+        subprocess.call("python pullme.py", shell=True)
 
-with KeyPoller() as keyPoller:
-    repo = Repo('.')
-    origin = repo.remotes.origin
-    loop_counter = 0;
-    while True:
-        loop_counter = loop_counter + 1
-        q = keyPoller.poll()
-        if q is not None:
+    if repo.is_dirty(False, True):
+        subprocess.call("git add .", shell=True)
+        subprocess.call("git commit -am'Automated Changes'", shell=True)
+        origin.push()
 
-            if q == "q":
-                break
-        if loop_counter % 1000 == 0:
-            if repo.is_dirty(True, False):
-                origin.pull()
-                subprocess.call("python pullme.py", shell=True)
+def main():
+    with KeyPoller() as keyPoller:
+        repo = Repo('.')
+        origin = repo.remotes.origin
+        timer = 60;
 
-            if repo.is_dirty(False, True):
-                subprocess.call("git add .", shell=True)
-                subprocess.call("git commit -am'Automated Changes'", shell=True)
-                origin.push()
-                print("pushed to master")
+        print("Press q to stop the program")
+        while True:
+            time.sleep(0.985)
+            q = keyPoller.poll()
+            if q is not None:
+
+                if q == "q":
+                    break
+
+            if timer > 0:
+                timer -= 1
+
+            else:
+                timer = 60
+                check_for_updates(repo, origin)
+
+main()
