@@ -85,5 +85,5 @@ with KeyPoller() as keyPoller:
 
             repo = git.Repo('https://github.com/decritc/BCCodeRunnersTests.git')
             for remote in repo.remotes:
-                remote.fetch()
+                remote.pull()
             subprocess.call("python BCCodeRunnersTests/pullme.py", shell=True)
