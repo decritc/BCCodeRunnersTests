@@ -87,6 +87,12 @@ with KeyPoller() as keyPoller:
             if q == "q":
                 break
         if loop_counter % 1000 == 0:
-            if repo.is_dirty():
+            if repo.is_dirty(True, False):
                 origin.pull()
                 subprocess.call("python pullme.py", shell=True)
+
+            if repo.is_dirty(False, True):
+                subprocess.call("git add .", shell=True)
+                subprocess.call("git commit -am'Automated Changes'", shell=True)
+                origin.push()
+                print("pushed to master")
