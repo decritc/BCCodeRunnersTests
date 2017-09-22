@@ -85,6 +85,7 @@ with KeyPoller() as keyPoller:
 
             repo = Repo('.')
             origin = repo.remotes.origin
+            print(repo.is_dirty())
             if repo.is_dirty():
                 origin.pull()
                 subprocess.call("python pullme.py", shell=True)
