@@ -1,6 +1,5 @@
 import sys
 
-print("We are the champions!")
+print("Test Success!")
 
-print("till the end")
 
