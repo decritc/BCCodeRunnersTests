@@ -1,4 +1,2 @@
 
-print("Test Success!")
-
-print('test')
+print("Test Success")
