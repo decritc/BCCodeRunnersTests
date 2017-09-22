@@ -79,6 +79,8 @@ with KeyPoller() as keyPoller:
     repo = Repo('.')
     origin = repo.remotes.origin
     loop_counter = 0;
+
+    print("Press q to stop the program")
     while True:
         loop_counter = loop_counter + 1
         q = keyPoller.poll()
