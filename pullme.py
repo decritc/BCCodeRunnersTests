@@ -1,5 +1,4 @@
 import sys
 
-print("Test pull command!")
+print("We are the champions!")
 
-print("test")
