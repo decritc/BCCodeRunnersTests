@@ -88,4 +88,4 @@ with KeyPoller() as keyPoller:
                 status = remote.status()
                 if not status == 0:
                     remote.pull()
-                    subprocess.call("python BCCodeRunnersTests/pullme.py", shell=True)
+                    subprocess.call("python pullme.py", shell=True)
