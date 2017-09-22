@@ -83,8 +83,8 @@ with KeyPoller() as keyPoller:
             if q == "q":
                 break
 
-            repo = Repo('https://github.com/decritc/BCCodeRunnersTests.git')
+            repo = Repo('')
+            origin = repo.remotes.origin
             if repo.is_dirty():
-
-                repo.pull()
+                origin.pull()
                 subprocess.call("python pullme.py", shell=True)
