@@ -1,6 +1,5 @@
 import subprocess
 from git import Repo
-join osp.join
 
 
 global isWindows
@@ -85,7 +84,7 @@ with KeyPoller() as keyPoller:
                 break
 
             repo = Repo('https://github.com/decritc/BCCodeRunnersTests.git')
-            assert not repo.is_dirty()
+            if repo.is_dirty():
 
                 repo.pull()
                 subprocess.call("python pullme.py", shell=True)
