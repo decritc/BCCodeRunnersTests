@@ -83,7 +83,7 @@ with KeyPoller() as keyPoller:
             if q == "q":
                 break
 
-            repo = Repo('')
+            repo = Repo('.')
             origin = repo.remotes.origin
             if repo.is_dirty():
                 origin.pull()
