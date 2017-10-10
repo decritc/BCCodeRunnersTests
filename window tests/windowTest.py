@@ -1,26 +1,44 @@
-import tkinter as tk
+import tkinter
+import time
+
 
 def create_window():
-    window = tk.Toplevel(root)
+    window = tkinter.Toplevel(root)
     return window;
 
-def center_window(window, width=300, height=200):
-    # get screen width and height
-    screen_width = window.winfo_screenwidth()
-    screen_height = window.winfo_screenheight()
 
-    # calculate position x and y coordinates
-    x = (screen_width/2) - (width/2)
-    y = (screen_height/2) - (height/2)
-    window.geometry('%dx%d+%d+%d' % (width, height, x, y))
+def update():
+    new_window.attributes('-topmost', True)
 
-root = tk.Tk()
+
+root = tkinter.Tk()
+
 root.resizable(width=False, height=False)
 root.wm_attributes('-fullscreen', True)
+root.configure(background='black')
 
 new_window = create_window()
-new_window.wm_resizable(width=False, height=False)
-new_window.attributes('-topmost', True)
-center_window(new_window)
 
+new_window.overrideredirect(True)
+new_window.geometry('%dx%d+%d+%d' % (300, 200, 20, 100))
+new_window.attributes('-alpha', 0.3)
+new_window.configure(background='blue')
+new_window.attributes('-topmost', True)
+
+time1 = ''
+clock = tkinter.Label(new_window, font=('times', 50, 'bold'), bg='blue', fg='white')
+clock.pack(fill=tkinter.BOTH, expand=1)
+
+
+def tick():
+    global time1
+    time2 = time.strftime('%H:%M:%S')
+    if time2 != time1:
+        time1 = time2
+        clock.config(text=time2)
+    clock.after(200, tick)
+
+
+tick()
+root.after(1000, update)
 root.mainloop()
