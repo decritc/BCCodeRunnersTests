@@ -15,7 +15,6 @@ root = tkinter.Tk()
 
 root.resizable(width=False, height=False)
 root.wm_attributes('-fullscreen', True)
-root.attributes('-fullscreen', True)
 root.configure(background='black')
 
 new_window = create_window()
