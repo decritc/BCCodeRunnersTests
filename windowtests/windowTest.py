@@ -1,5 +1,9 @@
 import tkinter
 import time
+from PIL import ImageTk, Image
+import os
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 
 def create_window():
@@ -15,8 +19,13 @@ root = tkinter.Tk()
 
 root.resizable(width=False, height=False)
 root.wm_attributes('-fullscreen', True)
-root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth(), root.winfo_screenheight()))
 root.configure(background='black')
+
+image1 = Image.open(dir_path + '/textured_background.jpg')
+background_image = ImageTk.PhotoImage(image1)
+background_label = tkinter.Label(root, image=background_image)
+background_label.place(x=0, y=0, relwidth=1, relheight=1)
+background_label.pack()
 
 new_window = create_window()
 
