@@ -1,6 +1,8 @@
 import tkinter
 import time
-from PIL import ImageTk, Image
+import PIL
+from PIL import ImageTk
+from PIL import Image
 import os
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -24,7 +26,7 @@ root.configure(background='black')
 image1 = Image.open(dir_path + '/textured_background.jpg')
 background_image = ImageTk.PhotoImage(image1)
 background_label = tkinter.Label(root, image=background_image)
-background_label.place(x=0, y=0, relwidth=1, relheight=1)
+background_label.place(x=0, y=0, relwidth=100, relheight=100)
 background_label.pack()
 
 new_window = create_window()
