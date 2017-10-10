@@ -1,7 +1,6 @@
 import tkinter
 import time
-import PIL
-from PIL import ImageTk
+import PIL.ImageTk
 from PIL import Image
 import os
 
@@ -24,7 +23,7 @@ root.wm_attributes('-fullscreen', True)
 root.configure(background='black')
 
 image1 = Image.open(dir_path + '/textured_background.jpg')
-background_image = ImageTk.PhotoImage(image1)
+background_image = PIL.ImageTk.PhotoImage(image1)
 background_label = tkinter.Label(root, image=background_image)
 background_label.place(x=0, y=0, relwidth=100, relheight=100)
 background_label.pack()
