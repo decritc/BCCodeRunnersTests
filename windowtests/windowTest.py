@@ -24,7 +24,7 @@ screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 
 root.resizable(width=False, height=False)
-#root.wm_attributes('-fullscreen', True)
+root.wm_attributes('-fullscreen', True)
 root.configure(background='black')
 
 image1 = Image.open(dir_path + '/textured_background.jpg')
