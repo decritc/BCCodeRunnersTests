@@ -4,8 +4,6 @@ import PIL.ImageTk
 from PIL import Image
 import os
 
-
-
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 
