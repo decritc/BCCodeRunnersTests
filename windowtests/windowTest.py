@@ -4,6 +4,8 @@ import PIL.ImageTk
 from PIL import Image
 import os
 
+
+
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 
@@ -18,14 +20,18 @@ def update():
 
 root = tkinter.Tk()
 
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+
 root.resizable(width=False, height=False)
-root.wm_attributes('-fullscreen', True)
+#root.wm_attributes('-fullscreen', True)
 root.configure(background='black')
 
 image1 = Image.open(dir_path + '/textured_background.jpg')
+image1 = image1.resize((screen_width, screen_height), Image.ANTIALIAS)
 background_image = PIL.ImageTk.PhotoImage(image1)
 background_label = tkinter.Label(root, image=background_image)
-background_label.place(x=0, y=0, relwidth=100, relheight=100)
+background_label.place(x=0, y=0)
 background_label.pack()
 
 new_window = create_window()
