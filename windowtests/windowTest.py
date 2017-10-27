@@ -1,8 +1,8 @@
 import tkinter
-import time
 import PIL.ImageTk
 from PIL import Image
 import os
+import clock
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -14,6 +14,8 @@ def create_window():
 
 def update():
     new_window.attributes('-topmost', True)
+    clockWindow.config(text=clock.tick())
+    root.after(200, update)
 
 
 root = tkinter.Tk()
@@ -35,25 +37,13 @@ background_label.pack()
 new_window = create_window()
 
 new_window.overrideredirect(True)
-new_window.geometry('%dx%d+%d+%d' % (300, 200, 20, 100))
+new_window.geometry('%dx%d+%d+%d' % (300, 300, 20, 100))
 new_window.attributes('-alpha', 0.3)
 new_window.configure(background='blue')
 new_window.attributes('-topmost', True)
 
-time1 = ''
-clock = tkinter.Label(new_window, font=('times', 50, 'bold'), bg='blue', fg='white')
-clock.pack(fill=tkinter.BOTH, expand=1)
+clockWindow = tkinter.Label(new_window, font=('times', 50, 'bold'), bg='blue', fg='white')
+clockWindow.pack(fill=tkinter.BOTH, expand=1)
 
-
-def tick():
-    global time1
-    time2 = time.strftime('%H:%M:%S')
-    if time2 != time1:
-        time1 = time2
-        clock.config(text=time2)
-    clock.after(200, tick)
-
-
-tick()
 root.after(1000, update)
 root.mainloop()
