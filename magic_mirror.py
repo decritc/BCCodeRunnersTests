@@ -26,14 +26,9 @@ while done == False:
     screen.blit(bg, (0,0))
 
     clock_surface = Surface((300, 300))
-    clock_surface.set_alpha(155)
-    clock_surface.fill((0,0,255))
+    clock_surface.set_alpha(100)
 
-    pygame.font.init()
-    myfont = pygame.font.SysFont('Roboto', 50, 'bold')
-    text_surface = myfont.render(clock.tick(), False, (0,0,0))
-
-    clock_surface.blit(text_surface, (65, 120))
+    clock_surface.blit(clock.updateAndRender(), (0, 0))
     screen.blit(clock_surface, (20, 50))
 
     pygame.display.update()
