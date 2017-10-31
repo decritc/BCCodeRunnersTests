@@ -1,5 +1,5 @@
 import pygame
-from pygame import *
+from pygame import Surface
 import os
 import clock
 
