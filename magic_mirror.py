@@ -15,13 +15,12 @@ pygame.display.set_caption('Magic Mirror')
 clock_fps = pygame.time.Clock()
 
 
-done = False
-while done == False:
+while(True):
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == ord("q"):
-                done = True
+                pygame.quit()
 
     screen.blit(bg, (0,0))
 
@@ -35,5 +34,4 @@ while done == False:
 
     clock_fps.tick(30)
 
-pygame.quit()
 

@@ -3,10 +3,8 @@ from pygame import Surface
 
 
 BRIGHTBLUE = (  0,  50, 255)
-WHITE      = (255, 255, 255)
 DARKRED    = (128,   0,   0)
 RED        = (204,  52,   0)
-YELLOW     = (255, 255,   0)
 BLACK      = (  0,   0,   0)
 
 HOURHANDCOLOR = DARKRED
@@ -22,8 +20,13 @@ WIN_CENTERY = int(WINDOWHEIGHT / 2)
 CLOCKNUMSIZE = 50
 CLOCKSIZE = 120
 
+clock_surface = Surface((WINDOWWIDTH, WINDOWHEIGHT))
 
-def getTickPosition(tick, stretch=1.0, originx=WIN_CENTERX, originy=WIN_CENTERY):
+pygame.font.init()
+fontObj = pygame.font.SysFont('Roboto', CLOCKNUMSIZE)
+
+
+def getTickPosition(tick, stretch=1.0):
 
     tick -= 15
     tick = tick % 60
@@ -35,18 +38,13 @@ def getTickPosition(tick, stretch=1.0, originx=WIN_CENTERX, originy=WIN_CENTERY)
     x *= stretch
     y *= stretch
 
-    x += originx
-    y += originy
+    x += WIN_CENTERX
+    y += WIN_CENTERY
 
     return x, y
 
 
 def updateAndRender():
-    clock_surface = Surface((WINDOWWIDTH, WINDOWHEIGHT))
-
-    pygame.font.init()
-    fontObj = pygame.font.SysFont('Roboto', CLOCKNUMSIZE)
-
     clock_surface.fill(BRIGHTBLUE)
 
     for i in range(1, 13):
