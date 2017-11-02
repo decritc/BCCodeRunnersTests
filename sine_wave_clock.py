@@ -24,7 +24,7 @@ def updateAndRender():
     if y > 300 or y < 0:
         y = 150
 
-    pygame.draw.line(clock_surface, (0, 0, 0), (x, y + 4), (x,y), 4)
+    pygame.draw.circle(clock_surface, (0, 0, 0), (x, round(y)), 2)
 
     first_run = False
     last_y = y
