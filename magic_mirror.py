@@ -1,7 +1,9 @@
+import os
+
 import pygame
 from pygame import Surface
-import os
-import clock
+
+import sine_wave_clock
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -27,7 +29,7 @@ while(True):
     clock_surface = Surface((300, 300))
     clock_surface.set_alpha(100)
 
-    clock_surface.blit(clock.updateAndRender(), (0, 0))
+    clock_surface.blit(sine_wave_clock.updateAndRender(), (0, 0))
     screen.blit(clock_surface, (20, 50))
 
     pygame.display.update()
